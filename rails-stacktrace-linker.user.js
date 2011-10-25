@@ -9,17 +9,18 @@
 // To install, open this file with Google Chrome
 //
 // To uninstall, go to Tools/Extensions,
-// select "Rails Stacktrace TextMate Linker - paozac", and click Uninstall.
+// select "Rails Stacktrace TextMate Linker", and click Uninstall.
 //
 // --------------------------------------------------------------------
 //
 // ==UserScript==
-// @name          Rails Stacktrace Textmate Linker
+// @name          Rails Stacktrace Texmtmate Linker
 // @description   make your stack trace lines open in TextMate
 // ==/UserScript==
 
 if (nodes = document.getElementById("traces") && document.querySelectorAll("#traces pre>code")) {
   
+  // Load jquery. The @require directory doesn't work with Chrome
   function addJQuery(callback) {
     var script = document.createElement("script");
     script.setAttribute("src", "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js");
@@ -31,9 +32,7 @@ if (nodes = document.getElementById("traces") && document.querySelectorAll("#tra
     document.body.appendChild(script);
   }
 
-  // the guts of this userscript
-  function main() {
-    
+  function main() {    
     var base_path = $.trim($("body code").first().html().split(':')[1]);
     
     $("#Application-Trace code").each(function(item){
@@ -47,8 +46,6 @@ if (nodes = document.getElementById("traces") && document.querySelectorAll("#tra
       new_link.attr('href', link);
       $(this).replaceWith(new_link);
     });
-    
-    
   }
 
   // load jQuery and execute the main function

@@ -4,6 +4,9 @@ Began as a fork of http://github.com/ryankshaw/rails-stacktrace-textmate-linker-
 
 Ended up rewriting from scratch and adding jQuery. Tested only with Google Chrome, should work with any Greasemonkey-enabled browser.
 
+
+jQuery is downloaded from the Google CDN, so if you're offline this script won't work.
+
 Install
 -------
 
