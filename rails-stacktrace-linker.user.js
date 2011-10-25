@@ -33,18 +33,20 @@ if (nodes = document.getElementById("traces") && document.querySelectorAll("#tra
   }
 
   function main() {    
-    var base_path = $.trim($("body code:contains('Rails.root')").first().html().split(':')[1]);
+    var base_path = $.trim($("body code:contains('Rails.root')").first().html().split(':')[1]);    
+    var lines = $("#Application-Trace code").text().split("\n");
     
-    $("#Application-Trace code").each(function(item){
-      var original_text = $(this).text();
-      var tokens = original_text.split(':');
+    $("#Application-Trace code").empty();
+    
+    $.each(lines, function(idx, line) {
+      var tokens = line.split(':');
       var link = "txmt://open?url=file://" + base_path + "/" + tokens[0] + "&line=" + tokens[1];
-      console.log(link);
       
       new_link = $("<a>");
-      new_link.text(original_text);
+      new_link.text(line);
       new_link.attr('href', link);
-      $(this).replaceWith(new_link);
+      $("#Application-Trace code").append(new_link).append("\n");
+      
     });
   }
 
