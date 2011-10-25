@@ -33,7 +33,7 @@ if (nodes = document.getElementById("traces") && document.querySelectorAll("#tra
   }
 
   function main() {    
-    var base_path = $.trim($("body code").first().html().split(':')[1]);
+    var base_path = $.trim($("body code:contains('Rails.root')").first().html().split(':')[1]);
     
     $("#Application-Trace code").each(function(item){
       var original_text = $(this).text();
